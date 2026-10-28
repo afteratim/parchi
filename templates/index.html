@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARCHI AI — Handwritten GR Extractor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">P</div>
+    <div><h1>PARCHI AI</h1><p>Handwritten GR & CTNS extractor</p></div>
+    <span class="local-tag">OPEN-SOURCE OCR · NO AI API</span>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">UPLOAD · REVIEW · EXPORT</p>
+      <h2>Turn parchi photos into clean records.</h2>
+      <p class="sub">Upload multiple photos. Review the detected date, heading, GR number and CTNS before copying or downloading your results.</p>
+    </section>
+    <section class="upload-card">
+      <form id="uploadForm">
+        <label class="dropzone" for="images">
+          <span class="upload-icon">↑</span>
+          <strong>Choose parchi images</strong>
+          <span>JPG, PNG, WEBP · multiple files supported</span>
+          <input id="images" name="images" type="file" accept="image/*" multiple required>
+        </label>
+        <div id="fileList" class="file-list">No images selected yet.</div>
+        <button id="extractBtn" class="primary" type="submit">Extract text</button>
+      </form>
+      <div id="status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section id="resultsSection" class="results-section hidden">
+      <div class="section-heading"><div><p class="eyebrow">RESULTS</p><h2>Review extracted records</h2></div><span id="recordCount" class="count-pill">0 records</span></div>
+      <div class="notice"><strong>Check highlighted values.</strong> Handwritten OCR can misread digits. Correct uncertain entries before exporting; nothing is automatically deleted.</div>
+      <div class="toolbar">
+        <label class="filter-label"><input id="uncertainOnly" type="checkbox"> Show uncertain only</label>
+        <div class="actions"><button id="copyBtn" class="secondary" type="button">Copy output lines</button><button id="csvBtn" class="primary small" type="button">Download CSV</button></div>
+      </div>
+      <div id="pagesContainer"></div>
+      <div class="bottom-actions"><button id="copyBtnBottom" class="secondary" type="button">Copy output lines</button><button id="csvBtnBottom" class="primary small" type="button">Download CSV</button></div>
+    </section>
+    <footer><span>Runs its OCR engine on this Render service.</span><span>Images are processed in memory and are not saved by the app.</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
